@@ -11,13 +11,14 @@ import Heatmap from './Heatmap';
 import BarGraph from './BarGraph';
 import Streakbar from './Streakbar';
 import StreakGrid from './StreakGrid';
+import Login from './Login';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
+      <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Mode" component={Mode} />
         <Stack.Screen name="GrowthPage" component={GrowthPage} />
@@ -27,6 +28,7 @@ export default function App() {
         <Stack.Screen name="BarGraph" component={BarGraph} />
         <Stack.Screen name="Streakbar" component={Streakbar} />
         <Stack.Screen name="StreakGrid" component={StreakGrid} />
+        <Stack.Screen name="Login" component={Login} />
       </Stack.Navigator>
     </NavigationContainer>
   );

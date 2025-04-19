@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'; 
 import {
   View,
   Text,
@@ -30,6 +30,7 @@ const actionHabits = [
 
 export default function GrowthActionScreen() {
   const [completed, setCompleted] = useState({});
+  const [streaks, setStreaks] = useState({});
   const [mode, setMode] = useState('growth');
   const [customHabits, setCustomHabits] = useState([]);
   const [newHabit, setNewHabit] = useState({ emoji: '', title: '', time: '' });
@@ -40,7 +41,16 @@ export default function GrowthActionScreen() {
   const habits = [...baseHabits, ...customHabits.filter((h) => h.mode === mode)];
 
   const toggleComplete = (id) => {
-    setCompleted((prev) => ({ ...prev, [id]: !prev[id] }));
+    setCompleted((prev) => {
+      const isNowComplete = !prev[id];
+      if (isNowComplete) {
+        setStreaks((prevStreaks) => ({
+          ...prevStreaks,
+          [id]: (prevStreaks[id] || 0) + 1,
+        }));
+      }
+      return { ...prev, [id]: isNowComplete };
+    });
   };
 
   const toggleMode = () => {
@@ -63,6 +73,7 @@ export default function GrowthActionScreen() {
         </View>
       </View>
 
+    
       <Text style={styles.sectionTitle}>Today’s Tasks</Text>
 
       {habits.map((habit) => (
@@ -72,21 +83,28 @@ export default function GrowthActionScreen() {
         >
           <TouchableOpacity
             style={styles.habitInfo}
-            onPress={() => navigation.navigate('Heatmap')} //, { habit })}
+            onPress={() => navigation.navigate('Heatmap')}
           >
             <Text style={styles.emoji}>{habit.emoji}</Text>
             <View style={{ flex: 1 }}>
               <Text
-                style={[
-                  styles.habitTitle,
-                  completed[habit.id] && { textDecorationLine: 'line-through', color: '#999' },
-                ]}
+                style={[styles.habitTitle, completed[habit.id] && {
+                  textDecorationLine: 'line-through',
+                  color: '#999'
+                }]}
               >
                 {habit.title}
               </Text>
               <Text style={styles.habitProgress}>{habit.time}</Text>
             </View>
           </TouchableOpacity>
+
+          <View style={{ flexDirection: 'row', alignItems: 'center', marginRight: 10 }}>
+            <Ionicons name="flame" size={18} color="#FF6F00" />
+            <Text style={{ marginLeft: 4, color: '#FF6F00', fontWeight: '600' }}>
+              {streaks[habit.id] || 0}
+            </Text>
+          </View>
 
           <TouchableOpacity onPress={() => toggleComplete(habit.id)}>
             <Ionicons
@@ -265,5 +283,22 @@ const styles = StyleSheet.create({
   addButtonText: {
     color: '#FFF',
     fontWeight: '600',
+  },
+  quickAddContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    marginBottom: 10,
+    gap: 8,
+  },
+  quickAddBtn: {
+    backgroundColor: '#FFE0B2',
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderRadius: 20,
+  },
+  quickAddText: {
+    fontWeight: '600',
+    fontSize: 12,
+    color: '#BF360C',
   },
 });

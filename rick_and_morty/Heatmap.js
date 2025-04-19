@@ -43,7 +43,7 @@ export default function Heatmap({ navigation }) {
 
   return (
     <ScrollView style={styles.container}>
-      <Text style={styles.title}>📅 Heatmap</Text>
+      <Text style={styles.title}>Dashboard</Text>
 
       {/* Heatmap grid directly here */}
       {pressed.Heatmap && (
@@ -89,7 +89,7 @@ export default function Heatmap({ navigation }) {
 
       <View style={styles.buttonGrid}>
         {[
-          { label: 'Streak Bar', key: 'StreakBar' },
+          { label: 'Streak Bar', key: 'Streakbar' },
           { label: 'Bar Graph', key: 'BarGraph' },
           { label: 'Streak Grid', key: 'StreakGrid' },
           { label: 'Heatmap', key: 'Heatmap' },
