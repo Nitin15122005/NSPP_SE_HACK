@@ -71,7 +71,7 @@ export default function Analysis({ navigation }) {
       {/* Header with profile icon */}
       <View style={styles.headerContainer}>
         <View style={styles.header}>
-          <Text style={[styles.title, { color: theme.text }]}>Fitness Analysis</Text>
+          <Text style={[styles.title, { color: theme.text }]}>Habit Analysis</Text>
           <View style={styles.headerIcons}>
             <TouchableOpacity onPress={navigateToProfile} style={styles.profileButton}>
               <Image 
