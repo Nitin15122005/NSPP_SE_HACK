@@ -78,7 +78,7 @@ export default function Home({ navigation, route }) {
         {/* Header with Theme Toggle */}
         <View style={styles.headerContainer}>
           <View style={styles.header}>
-            <Text style={[styles.greeting, { color: theme.text }]}>Fitness Overview</Text>
+            <Text style={[styles.greeting, { color: theme.text }]}>Rick & Monty</Text>
             <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
               <Image source={require('./assets/profile.png')} style={styles.profileIcon} />
             </TouchableOpacity>
