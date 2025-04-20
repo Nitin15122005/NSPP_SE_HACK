@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createStackNavigator } from '@react-navigation/native-stack';
 
+import Login from './Login'
 import Home from './Home';
 import Mode from './Mode';
 import GrowthPage from './Growth_page1';
@@ -22,7 +23,8 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
+      <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Mode" component={Mode} />
         <Stack.Screen name="GrowthPage" component={GrowthPage} />
